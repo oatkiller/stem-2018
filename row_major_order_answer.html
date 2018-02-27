@@ -71,10 +71,10 @@
       // Change the following two statements to draw the items in a grid in the canvas
 
       // for now, just draw them all in order, left to right
-      const x = index * tileWidth
+      const x = (index % gridWidth) * tileWidth
       // This needs to be changed
-      // HINT: learn about the % operator and Math.floor
-      const y = 0
+      // HINT: learn about the % operator
+      const y = Math.floor(index / gridHeight) * tileHeight
 
       context.fillRect(x, y, tileWidth, tileHeight)
 
