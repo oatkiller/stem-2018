@@ -1,5 +1,5 @@
 // How long to wait between procesing a turn (in milliseconds)
-const gameSpeed = 1000 / 30
+const gameSpeed = 5000
 
 // Width / height of a tile in pixels
 const tileSize = 10
@@ -67,7 +67,12 @@ const tickInterval = setInterval(
   gameSpeed
 )
 
+requestAnimationFrame(
+  render
+)
+
 function render() {
+  requestAnimationFrame(render)
   const canvas = document.getElementById('game')
   canvas.width = gridWidth * tileSize
   canvas.height = gridHeight * tileSize
@@ -123,7 +128,6 @@ function tick() {
   } else {
     movePlayer(playerTwo)
   }
-  render()
 
   function movePlayer(player) {
     let xVelocity = 0

@@ -1,0 +1,44 @@
+<canvas id='map' width='800' height='600'></canvas>
+<canvas id='minimap'></canvas>
+<script>
+  const map = document.getElementById('map')
+  const minimap = document.getElementById('minimap')
+
+  const mapContext = map.getContext('2d')
+  const minimapContext = minimap.getContext('2d')
+
+  let x = 0
+
+  let xDirection = 1
+
+  window.addEventListener(
+    'keydown',
+    function(event) {
+      if (event.key === 'ArrowRight') {
+        xDirection = 1
+      } else if (event.key === 'ArrowLeft') {
+        xDirection = -1
+      }
+    }
+  )
+
+  const characterSideLength = 20
+
+  setInterval(
+    function() {
+      x = x + (xDirection * characterSideLength)
+    },
+    1000 / 12
+  )
+
+  setInterval(
+    function() {
+      mapContext.clearRect(0, 0, map.width, map.height)
+
+      mapContext.fillRect(x, 0, characterSideLength, characterSideLength)
+    },
+    1000 / 60
+  )
+
+  console.log('map', map, 'minimap', minimap)
+</script>
